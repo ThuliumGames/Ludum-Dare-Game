@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Stats : MonoBehaviour {
 	
 	public float[] Accs = {10, 50, 500};
-	public float[] Spds = {10, 50, 250};
+	public float[] Spds = {50, 125, 250};
 	public float[] Trns = {0.075f, 0.1f, 0.75f};
 	
 	public int[] Stts = {0, 2, 1};

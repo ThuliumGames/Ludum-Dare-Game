@@ -47,10 +47,6 @@ public class CarMove : MonoBehaviour {
 				RB.velocity = new Vector3 (GoForce.x, RB.velocity.y, GoForce.z);
 				RB.angularVelocity = transform.up * Input.GetAxis ("Horizontal" + Player) * (RB.velocity.magnitude) * RotSpeed;
 		} else {
-			if (St.Stts[3] == 1) {
-				transform.position = StPos;
-				--GetComponent<Checkpoints>().Laps;
-			}
 			Speed = -1;
 		}
 	}
