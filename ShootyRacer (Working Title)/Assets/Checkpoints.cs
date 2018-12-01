@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Checkpoints : MonoBehaviour {
 	
@@ -11,12 +12,18 @@ public class Checkpoints : MonoBehaviour {
 	
 	public int Laps;
 	
+	public Text Lap;
+	
 	void Start () {
 		Array.Resize(ref points, 5);
 		points[0] = GameObject.Find ("Checkpoints/ (0)").GetComponent<Collider>();
 		points[1] = GameObject.Find ("Checkpoints/ (1)").GetComponent<Collider>();
 		points[2] = GameObject.Find ("Checkpoints/ (2)").GetComponent<Collider>();
 		points[3] = GameObject.Find ("Checkpoints/ (3)").GetComponent<Collider>();
+	}
+	
+	void Update () {
+		Lap.text = ""+(3 - Laps);
 	}
 	
 	void OnTriggerEnter (Collider other) {
