@@ -7,12 +7,11 @@ public class CarMove : MonoBehaviour {
 	Rigidbody RB;
 	
 	float Speed;
-	public float Acceleration = 100;
+	public float Acceleration = 50;
 	public float MaxSpeed = 50;
-	public float RotSpeed = 2;
+	public float RotSpeed = 0.1f;
 	
 	public Vector3 Pos;
-	public float CamSpeed = 5;
 	
 	public LayerMask LM;
 	
