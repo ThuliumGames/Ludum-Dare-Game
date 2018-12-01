@@ -35,7 +35,7 @@ public class CarMove : MonoBehaviour {
 				}
 				Vector3 GoForce = transform.forward * Speed;
 				RB.velocity = new Vector3 (GoForce.x, RB.velocity.y, GoForce.z);
-				RB.angularVelocity = transform.up * Input.GetAxis ("Horizontal" + Player) * (RB.velocity.magnitude) * RotSpeed;
+				RB.angularVelocity = transform.up * Input.GetAxis ("Horizontal" + Player) * (RB.velocity.magnitude * (Input.GetAxis ("Vertical" + Player)/2)) * RotSpeed;
 		} else {
 			Speed = -1;
 		}
