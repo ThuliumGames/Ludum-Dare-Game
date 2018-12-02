@@ -141,17 +141,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Accs:
-  - 10
+  - 7
   - 50
-  - 500
+  - 100000
   Spds:
-  - 10
-  - 50
-  - 250
+  - 75
+  - 150
+  - 500
   Trns:
-  - 0.01
-  - 0.1
-  - 0.75
+  - 0.015
+  - 0.075
+  - 0.25
   Stts: 00000000020000000100000000000000
   changed: 000000
   Choices:
@@ -3425,17 +3425,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Accs:
-  - 10
+  - 7
   - 50
-  - 500
+  - 100000
   Spds:
-  - 10
-  - 50
-  - 250
+  - 75
+  - 150
+  - 500
   Trns:
-  - 0.01
-  - 0.1
-  - 0.75
+  - 0.015
+  - 0.075
+  - 0.25
   Stts: 00000000020000000100000000000000
   changed: 000000
   Choices:
