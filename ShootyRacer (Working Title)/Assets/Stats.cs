@@ -10,11 +10,12 @@ public class Stats : MonoBehaviour {
 	public float[] Trns = {0.0625f, 0.125f, 0.25f};
 	
 	public int[] Stts = {0, 2, 1};
-	public bool[] changed = {false, false, false};
 	
 	public Dropdown[] Choices;
 	
 	public int[] PrevStats = {0, 2, 1};
+	
+	public static int NumPlayers = 2;
 	
 	void Start () {
 		DontDestroyOnLoad(this.gameObject);
@@ -24,6 +25,8 @@ public class Stats : MonoBehaviour {
 	}
 	
 	void Update () {
+		
+		NumPlayers = Choices[3].value+1;
 		
 		for (int i = 0; i < 3; ++i) {
 			Stts[i] = Choices[i].value;
