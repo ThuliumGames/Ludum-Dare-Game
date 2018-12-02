@@ -7,7 +7,7 @@ public class Stats : MonoBehaviour {
 	
 	public float[] Accs = {10, 50, 500};
 	public float[] Spds = {75, 150, 300};
-	public float[] Trns = {0.25f, 0.5f, 0.75f};
+	public float[] Trns = {0.0625f, 0.125f, 0.25f};
 	
 	public int[] Stts = {0, 2, 1};
 	public bool[] changed = {false, false, false};
@@ -66,6 +66,7 @@ public class Stats : MonoBehaviour {
 	}
 	
 	void Sta () {
-		Application.LoadLevel ("Level3");
+		int Lev = Random.Range (1, 11);
+		Application.LoadLevel ("Level" + Lev);
 	}
 }
