@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 23846043176204088}
   - component: {fileID: 64692560937673882}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Track
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ Transform:
   m_GameObject: {fileID: 1120095877393332}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0.01, z: 0}
-  m_LocalScale: {x: -10, y: 10, z: 10}
+  m_LocalScale: {x: -20, y: 20, z: 20}
   m_Children:
   - {fileID: 4303925480673850}
   - {fileID: 4404519807519648}
