@@ -24,6 +24,13 @@ public class Checkpoints : MonoBehaviour {
 	
 	void Update () {
 		Lap.text = ""+(3 - Laps);
+		if (Laps == 3) {
+			if (GetComponent<CarMove>().Player == 1) {
+				Application.LoadLevel("WinScreenR");
+			} else {
+				Application.LoadLevel("WinScreenB");
+			}
+		}
 	}
 	
 	void OnTriggerEnter (Collider other) {

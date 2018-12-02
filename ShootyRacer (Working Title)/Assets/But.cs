@@ -7,4 +7,8 @@ public class But : MonoBehaviour {
 	void Str () {
 		Application.LoadLevel ("Setup");
 	}
+	
+	void Quit () {
+		Application.Quit();
+	}
 }

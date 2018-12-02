@@ -9,26 +9,41 @@ public class Stats : MonoBehaviour {
 	public float[] Spds = {75, 150, 300};
 	public float[] Trns = {0.0625f, 0.125f, 0.25f};
 	
-	public int[] Stts = {0, 2, 1};
+	public int[] Stts = {0, 2, 1, 0};
 	
 	public Dropdown[] Choices;
 	
-	public int[] PrevStats = {0, 2, 1};
+	public int[] PrevStats = {0, 2, 1, 0};
 	
 	public static int NumPlayers = 2;
 	
+	Transform[] allObjects;
+	
 	void Start () {
-		DontDestroyOnLoad(this.gameObject);
-		if (Application.loadedLevelName == "StartScreen") {
+		if (GameObject.Find(name+"Glub") == null) {
+			DontDestroyOnLoad(this.gameObject);
+			name = name+"Glub";
+		} else {
 			Destroy (this.gameObject);
 		}
+		allObjects = GetComponentInChildren<Canvas>().GetComponentsInChildren<Transform>();
 	}
 	
 	void Update () {
 		
-		NumPlayers = Choices[3].value+1;
+		if (Application.loadedLevelName != "Setup") {
+			foreach (Transform C in allObjects) {
+				C.gameObject.SetActive(false);
+			}
+		} else {
+			foreach (Transform C in allObjects) {
+				C.gameObject.SetActive(true);
+			}
+		}
 		
-		for (int i = 0; i < 3; ++i) {
+		NumPlayers = Choices[4].value+1;
+		
+		for (int i = 0; i < 4; ++i) {
 			Stts[i] = Choices[i].value;
 			if (Stts[i] != PrevStats[i]) {
 				if (i < 3) {
