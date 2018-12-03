@@ -22,7 +22,7 @@ public class CarMove : MonoBehaviour {
 	
 	public Vector3 StPos;
 	
-	float HtDst = 4;
+	float HtDst = 5;
 	bool Turning;
 	
 	float Heat = 0;
@@ -30,7 +30,7 @@ public class CarMove : MonoBehaviour {
 	Image HeatGage;
 	
 	void Start () {
-		HtDst = 4;
+		HtDst = 5;
 		StPos = transform.position;
 		RB = GetComponent<Rigidbody>();
 		RB.centerOfMass = new Vector3 (0, 0, 1.25f);
@@ -65,7 +65,7 @@ public class CarMove : MonoBehaviour {
 						
 						Vector3 GoForce = transform.forward * Speed;
 						RB.velocity = new Vector3 (GoForce.x, RB.velocity.y, GoForce.z);
-						RB.angularVelocity = transform.up * Input.GetAxis ("Horizontal" + Player) * (RB.velocity.magnitude) * RotSpeed;
+						RB.angularVelocity = transform.up * Input.GetAxis ("Horizontal" + Player) * (RB.velocity.magnitude+0.1f) * RotSpeed;
 				} else {
 					Speed = -5*Mathf.Clamp(Speed, -1, 1);
 				}
@@ -74,7 +74,7 @@ public class CarMove : MonoBehaviour {
 			
 			} else {
 				MaxHeat = 1;
-				Heat -= 100 * Time.deltaTime;
+				Heat -= 500 * Time.deltaTime;
 				Speed /= 2f;
 				RB.angularVelocity /= 2f;
 			}
@@ -89,27 +89,34 @@ public class CarMove : MonoBehaviour {
 				Physics.Raycast (transform.position, -transform.up, out HitDown, Mathf.Infinity, LM);
 				
 				RaycastHit Hit;
-				if (!Physics.Raycast (transform.position, transform.forward, out Hit, HtDst, LM) && !Turning) {
+				if (!Physics.Raycast (transform.position, transform.forward, out Hit, 5, LM)) {
 					
-					HtDst = 4;
+					//HtDst = 5;
 					Speed += (0.5f) * Time.deltaTime * Acceleration;
 					
+					//if (St.Stts[3] == 0) {
+					//	Speed /= 1.05f;
+					//}
+					
 				} else {
-					Turning = true;
-					if (HtDst == 4) {
+					//Turning = true;
+					//if (HtDst == 5) {
 						Speed = -5*Mathf.Clamp(Speed, -1, 1);
-					}
-					HtDst = 40/(St.Stts[2]+1);
-					Speed += (-0.5f) * Time.deltaTime * Acceleration;
-					if (St.Stts[3] == 0) {
-						Speed /= 1.05f;
-					}
+						transform.LookAt (GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position);
+					//}
+					/*if (!Physics.Raycast (transform.position, -transform.forward, HtDst, LM)) {
+						HtDst = 40/(St.Stts[2]+1);
+					} else {
+						HtDst = 5;
+					}*/
+					//Speed += (-0.5f) * Time.deltaTime * Acceleration;
 					
 				}
 				
-				if (Mathf.Abs((GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position).x) < 0.5f || Physics.Raycast (transform.position, -transform.forward, HtDst, LM)) {
+/*				if (Mathf.Abs((GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position).x) < 2 || Physics.Raycast (transform.position, -transform.forward, 5, LM)) {
 					Turning = false;
-				}
+					HtDst = 5;
+				}*/
 				
 				Speed = Mathf.Clamp (Speed, -MaxSpeed/1.5f, MaxSpeed);
 				
@@ -117,20 +124,16 @@ public class CarMove : MonoBehaviour {
 				RB.velocity = new Vector3 (GoForce.x, RB.velocity.y, GoForce.z);
 				
 				if (transform.InverseTransformPoint(GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position).z > -1) {
-					if (HtDst > 4) {
-						RB.angularVelocity = transform.up * (Mathf.Clamp (transform.InverseTransformPoint(GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position).x, -1, 1)) * (RB.velocity.magnitude) * RotSpeed*2;
-					} else {
-						RB.angularVelocity = transform.up * (Mathf.Clamp (transform.InverseTransformPoint(GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position).x/4f, -1, 1)) * (RB.velocity.magnitude) * RotSpeed;
-					}
+					RB.angularVelocity = transform.up * (Mathf.Clamp (transform.InverseTransformPoint(GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position).x/2f, -1, 1)) * (RB.velocity.magnitude+0.1f) * RotSpeed;
 				} else {
-					RB.angularVelocity = transform.up * (Mathf.Clamp (transform.InverseTransformPoint(GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position).x, -1, 1)) * (RB.velocity.magnitude) * RotSpeed;
+					RB.angularVelocity = transform.up * (Mathf.Clamp (transform.InverseTransformPoint(GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position).x, -1, 1)) * (RB.velocity.magnitude+0.1f) * RotSpeed;
 				}
 				
 				Heat += (Mathf.Abs(Speed)-25) * 2 * Time.deltaTime;
 				
 			} else {
 				MaxHeat = 1;
-				Heat -= 100 * Time.deltaTime;
+				Heat -= 500 * Time.deltaTime;
 				Speed /= 2f;
 				RB.angularVelocity /= 2f;
 			}

@@ -24,8 +24,12 @@ public class Music : MonoBehaviour {
 			GetComponent<AudioSource>().volume = 1;
 		}
 		
-		if (Input.GetKey(KeyCode.Escape)) {
-			Application.Quit();
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			if (Application.loadedLevelName == "WinScreenR" || Application.loadedLevelName == "WinScreenB" || Application.loadedLevelName == "Setup" || Application.loadedLevelName == "Start" || Application.loadedLevelName == "Start1") {
+				Application.Quit();
+			} else {
+				Application.LoadLevel ("Setup");
+			}
 		}
 	}
 }

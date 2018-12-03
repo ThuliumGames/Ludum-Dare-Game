@@ -5,11 +5,15 @@ using UnityEngine;
 public class Intro : MonoBehaviour {
 	
 	float T = 0;
+	int i;
+	
+	void Start () {
+		i = Random.Range (0, 101);
+	}
 	
 	void Update () {
 		
 		if (T > 2.5f) {
-			int i = Random.Range (0, 100);
 			
 			if (i == 50) {
 				Application.LoadLevel("Start1");

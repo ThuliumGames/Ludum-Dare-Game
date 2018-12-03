@@ -84,7 +84,7 @@ public class Stats : MonoBehaviour {
 	}
 	
 	void Sta () {
-		int Lev = Random.Range (1, 11);
+		int Lev = Random.Range (1, 16);
 		Application.LoadLevel ("Level" + Lev);
 	}
 }
