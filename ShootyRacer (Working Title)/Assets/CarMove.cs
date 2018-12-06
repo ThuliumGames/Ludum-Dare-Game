@@ -70,11 +70,11 @@ public class CarMove : MonoBehaviour {
 					Speed = -5*Mathf.Clamp(Speed, -1, 1);
 				}
 				
-				Heat += (Mathf.Abs(Speed)-25) * 2 * Time.deltaTime;
+				Heat += (Mathf.Abs(Speed)-35) * 2 * Time.deltaTime;
 			
 			} else {
 				MaxHeat = 1;
-				Heat -= 500 * Time.deltaTime;
+				Heat -= 150 * Time.deltaTime;
 				Speed /= 2f;
 				RB.angularVelocity /= 2f;
 			}
@@ -124,16 +124,16 @@ public class CarMove : MonoBehaviour {
 				RB.velocity = new Vector3 (GoForce.x, RB.velocity.y, GoForce.z);
 				
 				if (transform.InverseTransformPoint(GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position).z > -1) {
-					RB.angularVelocity = transform.up * (Mathf.Clamp (transform.InverseTransformPoint(GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position).x/2f, -1, 1)) * (RB.velocity.magnitude+0.1f) * RotSpeed;
+					RB.angularVelocity = transform.up * (Mathf.Clamp (transform.InverseTransformPoint(GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position).x/4f, -1, 1)) * (RB.velocity.magnitude+0.1f) * RotSpeed;
 				} else {
 					RB.angularVelocity = transform.up * (Mathf.Clamp (transform.InverseTransformPoint(GameObject.Find(HitDown.collider.gameObject.GetComponentInParent<AutoConnect>().gameObject.name+"/EndPoint").transform.position).x, -1, 1)) * (RB.velocity.magnitude+0.1f) * RotSpeed;
 				}
 				
-				Heat += (Mathf.Abs(Speed)-25) * 2 * Time.deltaTime;
+				Heat += (Mathf.Abs(Speed)-35) * 2 * Time.deltaTime;
 				
 			} else {
 				MaxHeat = 1;
-				Heat -= 500 * Time.deltaTime;
+				Heat -= 150 * Time.deltaTime;
 				Speed /= 2f;
 				RB.angularVelocity /= 2f;
 			}

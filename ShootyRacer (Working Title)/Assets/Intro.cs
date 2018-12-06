@@ -16,7 +16,7 @@ public class Intro : MonoBehaviour {
 		if (T > 2.5f) {
 			
 			if (i == 50) {
-				Application.LoadLevel("Start1");
+				Application.LoadLevel("Start 1");
 			} else {
 				Application.LoadLevel("Start");
 			}
